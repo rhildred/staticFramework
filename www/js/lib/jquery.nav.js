@@ -7,7 +7,7 @@ function setActive(page) {
     }
 }
 
-define(["jquery", "text!../../_nav.html", "history"], function (jQuery, sNav) {
+define(["jquery", "text!../../nav.html", "history"], function (jQuery, sNav) {
     jQuery.fn.nav = function () {
         var path = window.location.pathname;
         var page = path.split("/").pop();
