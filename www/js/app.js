@@ -6,7 +6,9 @@ requirejs.config({
     "baseUrl": "js/lib",
     "paths": {
       "app": "../app",
-      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min",
+        "bootstrap": "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min",
+        "history": "//cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled-uncompressed/html4+html5/jquery.history"
     }
 });
 

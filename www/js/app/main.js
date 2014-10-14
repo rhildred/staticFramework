@@ -1,6 +1,7 @@
-define(["jquery", "jquery.alpha", "jquery.beta"], function($) {
-    //the jquery.alpha.js and jquery.beta.js plugins have been loaded.
-    $(function() {
-        $('body').alpha().beta();
+define(["jquery", "jquery.footer", "jquery.nav", "bootstrap"], function(jQuery) {
+    //the jquery.nav.js and jquery.footer.js plugins have been loaded.
+    jQuery(function() {
+        jQuery("#nav").nav();
+        jQuery('#footer').footer();
     });
 });
