@@ -11,19 +11,21 @@ Please note that in order to be able to load an asset from a CDN in the built fi
 
 ###Project structure
 
-tools/
 
-- build.js
-- r.js
+www/
 
-www/app.html
+- index.html
+- about.html
+- contact.html
+- nav.html
+- footer.html
 
 www/js/
 
 - app.js
 - lib/
-    - jquery.alpha.js
-    - jquery.beta.js
+    - jquery.footer.js
+    - jquery.nav.js
     - require.js
 - app/
     - main.js
@@ -41,7 +43,11 @@ requirejs.config({
     "baseUrl": "js/lib",
     "paths": {
       "app": "../app",
-      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min",
+      "bootstrap": "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min",
+      "history": "//cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled-uncompressed/html4+html5/jquery.history",
+      "underscore": "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min"
+
     }
 });
 
@@ -52,10 +58,11 @@ requirejs(["app/main"]);
 App/main.js is where the app logic is:
 
 ```javascript
-define(["jquery", "jquery.alpha", "jquery.beta"], function($) {
+define(["jquery", "jquery.footer", "jquery.nav"], function(jQuery) {
     //the jquery.alpha.js and jquery.beta.js plugins have been loaded.
-    $(function() {
-        $('body').alpha().beta();
+    jQuery(function() {
+        jQuery("#nav").nav();
+        jQuery('#footer').footer();
     });
 });
 ```
