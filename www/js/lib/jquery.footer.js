@@ -1,6 +1,6 @@
-define(["jquery"], function(jQuery) {
+define(["jquery", "underscore", "text!../../footer.html"], function(jQuery, _, sFooter) {
   jQuery.fn.footer = function() {
-      var dYear = new Date();
-      return this.html('<hr/>&copy; Rich Hildred ' + dYear.getFullYear());
+      var fTemplate = _.template(sFooter);
+      return this.html(fTemplate({}));
   };
 });

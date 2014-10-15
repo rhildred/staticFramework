@@ -1,7 +1,7 @@
-Example of using require.js to load jQuery from a CDN
+Example of using require.js to load jQuery from a CDN and to load a nav.html and footer.html
 ====
 
-This example shows one way to load jQuery and jQuery plugins with require.js. In this example, we have modified the plugins to be wrapped in a `define()`, rather than using the [shim configuration](http://requirejs.org/docs/api.html#config-shim). If you'd like to see how to load jQuery plugins that do not call define, without modifying the source, see the [example with shim config](http://github.com/requirejs/example-jquery-shim/)
+This example ([demo here](https://rhildred.github.io/staticFramework/www)) shows one way to load jQuery and jQuery plugins with require.js. In this example, we have modified the plugins to be wrapped in a `define()`, rather than using the [shim configuration](http://requirejs.org/docs/api.html#config-shim). If you'd like to see how to load jQuery plugins that do not call define, without modifying the source, see the [example with shim config](http://github.com/requirejs/example-jquery-shim/)
 
 In this example, we set the *path* of jQuery to point to a google-hosted CDN. That can benefit users, who might already have the file in their browser cache, and therefore don't have to download it again.
 
