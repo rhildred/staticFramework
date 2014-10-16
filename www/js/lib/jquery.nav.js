@@ -1,5 +1,5 @@
 function setActive(page) {
-    jQuery(".active").removeClass("active");
+    jQuery(".navbar .active").removeClass("active");
     if (page == "index.html" || page == "" || page == ".") {
         jQuery('a[href$="."]').parent().addClass("active");
     } else {
@@ -14,7 +14,7 @@ define(["jquery", "text!../../nav.html", "underscore", "history"], function (jQu
         var fTemplate = _.template(sNav);
         this.html(fTemplate({}));
         setActive(page);
-
+        jQuery(".carousel").carousel();
 
         // we are clicking on navbar and want to set the history
         jQuery(".navbar a:not(.dropdown-toggle)").click(function (evt) {
@@ -31,16 +31,19 @@ define(["jquery", "text!../../nav.html", "underscore", "history"], function (jQu
         var bInBind = false;
         // history has changed either as a result of clicking or the back button
         History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
-            if(bInBind)return;
+            if (bInBind) return;
             bInBind = true;
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
             var sPage = State.cleanUrl.split("/").pop();
             setActive(sPage);
             var sUrl = sPage + " #content";
-            jQuery("#content").load(sUrl, function(sHtml){
+            jQuery("#content").load(sUrl, function (sHtml) {
                 var sTitle = sHtml.match(/<title[^>]*>([^<]+)<\/title>/)[1];
-                History.replaceState({state:sPage}, sTitle, sPage);
+                History.replaceState({
+                    state: sPage
+                }, sTitle, sPage);
                 bInBind = false;
+                jQuery(".carousel").carousel();
             });
         });
 
