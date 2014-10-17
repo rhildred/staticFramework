@@ -3,10 +3,10 @@ function Navigator(oParams){
         init: function(oParams){
             //constructor stuff ... we come into initial page
             jQuery.extend(this, oParams);
-            var page = this.path.split("/").pop();
             var fTemplate = _.template(this.sNav);
             this.oDiv.html(fTemplate({}));
-            this.setActive(page);
+            var sPage = this.path.split("/").pop();
+            this.setActive(sPage);
             jQuery(".carousel").carousel();
             // we are clicking on navbar and want to set the history
             this.oDiv.find("a:not(.dropdown-toggle)").click(jQuery.proxy(this.menuClick, this));
@@ -15,12 +15,12 @@ function Navigator(oParams){
             History.Adapter.bind(window, 'statechange', jQuery.proxy(this.stateChange, this));
         },
         path: window.location.pathname,
-        setActive: function (page) {
+        setActive: function (sPage) {
             jQuery(".navbar .active").removeClass("active");
-            if (page == "index.html" || page == "" || page == ".") {
+            if (sPage == "index.html" || sPage == "" || sPage == ".") {
                 jQuery('a[href$="."]').parent().addClass("active");
             } else {
-                jQuery('a[href$="' + page + '"]').parent().addClass("active");
+                jQuery('a[href$="' + sPage + '"]').parent().addClass("active");
             }
         },
         menuClick: function (evt) {
@@ -34,22 +34,23 @@ function Navigator(oParams){
         },
         // we need to know if we are in a replace state or a push state
         bInBind: false,
-        sPage: null,
         // history has changed either as a result of clicking or the back button
         stateChange: function () {
             if (this.bInBind) return;
             this.bInBind = true;
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
-            this.sPage = State.cleanUrl.split("/").pop();
-            this.setActive(this.sPage);
-            var sUrl = this.sPage + " #content";
+            var sPage = State.cleanUrl.split("/").pop();
+            this.setActive(sPage);
+            var sUrl = sPage + " #content";
             jQuery("#content").load(sUrl, jQuery.proxy(this.pageRetrieved, this));
         },
         pageRetrieved: function (sHtml) {
             var sTitle = sHtml.match(/<title[^>]*>([^<]+)<\/title>/)[1];
+            var sPage = History.getState().cleanUrl.split("/").pop();
+            // need to set title
             History.replaceState({
-                state: this.sPage
-            }, sTitle, this.sPage);
+                state: sPage
+            }, sTitle, sPage);
             this.bInBind = false;
             jQuery(".carousel").carousel();
         }
@@ -59,7 +60,7 @@ function Navigator(oParams){
     return this;
 }
 
-define(["jquery", "text!../../nav.html", "underscore", "history"], function (jQuery, sNav) {
+define(["text!../../nav.html", "jquery", "underscore", "history"], function (sNav) {
     jQuery.fn.nav = function () {
         new Navigator({
             sNav: sNav,
