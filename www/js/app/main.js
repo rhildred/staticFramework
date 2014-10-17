@@ -4,5 +4,6 @@ define(["jquery", "jquery.footer", "jquery.nav", "bootstrap"], function(jQuery) 
         jQuery("#nav").nav();
         jQuery('#footer').footer();
         jQuery('body').show();
+
     });
 });
