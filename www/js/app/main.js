@@ -4,6 +4,7 @@ define(["jquery", "jquery.footer", "jquery.nav", "bootstrap"], function() {
         jQuery.ajaxSetup({crossDomain: true, xhrFields: { withCredentials: true } });
         jQuery("#nav").nav();
         jQuery('#footer').footer();
+        //jQuery('#map_canvas').map();
         // we set this hidden in the CSS so that the page refresh can now be from top to bottom
         jQuery('body').show();
 
