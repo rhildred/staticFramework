@@ -1,4 +1,4 @@
-define(["jquery", "async!http://maps.google.com/maps/api/js?sensor=false"], function (jQuery) {
+define(["jquery", "async!//maps.google.com/maps/api/js?sensor=false"], function (jQuery) {
     return function () {
         var myOptions = {
             zoom: 14,
