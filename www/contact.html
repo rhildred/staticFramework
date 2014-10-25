@@ -14,7 +14,15 @@
             <h1>Contact Rich Hildred</h1>
             <div class="row">
                 <div class="col-md-8">
-                    <div id="map_canvas"></div>
+                    <div style="overflow:hidden;height:500px;width:100%;">
+                        <div id="gmap_canvas" style="height:500px;width:100%;"></div>
+                        <style>
+                            #gmap_canvas img {
+                                max-width: none!important;
+                                background: none!important
+                            }
+                        </style><a class="google-map-code" href="http://www.trivoo.net/gutscheine/deichmann/" id="get-map-data">trivoo.net</a>
+                    </div>
                 </div>
                 <div class="col-md-4">
 
@@ -54,16 +62,17 @@
                         <br />
                         <textarea name="message" placeholder="Your Inquiry"></textarea>
                         <br />
-                        <input type="submit" value="Send" />
-                        <input type="reset" value="Reset" />
+                        <input type="submit" value="Send" class="btn btn-primary btn-md" />
+                        <input type="reset" value="Reset"class="btn btn-primary btn-md" />
                         <br />
                     </form>
                 </div>
             </div>
+
         </div>
         <div id="footer"></div>
+        <script data-main="js/app" src="js/lib/require.js"></script>
     </div>
-    <script data-main="js/app" src="js/lib/require.js"></script>
 </body>
 
 </html>

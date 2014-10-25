@@ -10,12 +10,15 @@ define(["text!../../nav.html", "jquery", "underscore", "history", "bootstrap"], 
                 this.oDiv.html(fTemplate({}));
                 var sPage = this.path.split("/").pop();
                 this.setActive(sPage);
-                jQuery(".carousel").carousel();
                 // we are clicking on navbar and want to set the history
                 this.oDiv.find("a:not(.dropdown-toggle)").click(jQuery.proxy(this.menuClick, this));
 
                 // we get subsequent pages from the back button or from clicking above
                 History.Adapter.bind(window, 'statechange', jQuery.proxy(this.stateChange, this));
+                if(sPage == "")sPage = "index.html";
+                require([sPage], function(page){
+                    if(typeof page !== 'undefined') page();
+                });
             },
             path: window.location.pathname,
             setActive: function (sPage) {
@@ -55,7 +58,11 @@ define(["text!../../nav.html", "jquery", "underscore", "history", "bootstrap"], 
                     state: sPage
                 }, sTitle, sPage);
                 this.bInBind = false;
-                jQuery(".carousel").carousel();
+                if(sPage == ".")sPage = "index.html";
+                 require([sPage], function(page){
+                     if(typeof page !== 'undefined') page();
+                });
+
             }
 
         });

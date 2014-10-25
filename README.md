@@ -1,13 +1,9 @@
-Example of using require.js to load jQuery from a CDN and to load a nav.html and footer.html
+Javascript Code behind
 ====
 
-This example ([demo here](https://rhildred.github.io/staticFramework/www)) shows a simple templating system with  jQuery and jQuery plugins and require.js.
+This example ([demo here](https://rhildred.github.io/staticFramework/www)) shows a simple declarative templating system with  jQuery and jQuery plugins and require.js.
 
-In this example, we set the *path* of jQuery to point to a google-hosted CDN. That can benefit users, who might already have the file in their browser cache, and therefore don't have to download it again.
-
-Please note that in order to be able to load an asset from a CDN in the built files, all the plugins that needs that asset as a dependency have to call `define()`.
-
-**If you want IE6-8 support**, clone this repo, but replace the jQuery file with a jQuery 1.X release. The jQuery 2 used in this project does not work with those browsers, a 1.X release is needed. Modify the jQuery path in [app.js](https://github.com/requirejs/example-jquery-cdn/blob/master/www/js/app.js#L9), to for example `//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min`
+Each "page" like about.html and contact.html can have a contact.html.js script behind that gets loaded when the page is loaded into the dom. In this case index.html.js loads a twitter bootstrap carousel and contact.js.html loads a google map. The google map was [configured here.](http://www.trivoo.net/google-maps/)
 
 ###Project structure
 
@@ -27,6 +23,10 @@ www/js/
     - jquery.footer.js
     - jquery.nav.js
     - require.js
+    - text.js
+    - async.js
+    - index.html.js
+    - contact.html.js
 - app/
     - main.js
 
