@@ -1,4 +1,4 @@
-define(["text!../../nav.html", "jquery", "underscore", "history", "bootstrap"], function (sNav) {
+define(["jquery", "history", "bootstrap"], function (jQuery) {
 
 
     function Navigator(oParams) {
@@ -6,12 +6,10 @@ define(["text!../../nav.html", "jquery", "underscore", "history", "bootstrap"], 
             init: function (oParams) {
                 //constructor stuff ... we come into initial page
                 jQuery.extend(this, oParams);
-                var fTemplate = _.template(this.sNav);
-                this.oDiv.html(fTemplate({}));
                 var sPage = this.path.split("/").pop();
                 this.setActive(sPage);
                 // we are clicking on navbar and want to set the history
-                this.oDiv.find("a:not(.dropdown-toggle)").click(jQuery.proxy(this.menuClick, this));
+                jQuery("body").on("click", "#nav a:not(.dropdown-toggle)", jQuery.proxy(this.menuClick, this));
 
                 // we get subsequent pages from the back button or from clicking above
                 History.Adapter.bind(window, 'statechange', jQuery.proxy(this.stateChange, this));
@@ -72,7 +70,6 @@ define(["text!../../nav.html", "jquery", "underscore", "history", "bootstrap"], 
 
     jQuery.fn.nav = function () {
         new Navigator({
-            sNav: sNav,
             oDiv: this
         });
         return this;
