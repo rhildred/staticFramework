@@ -1,4 +1,4 @@
-define(["jquery", "history", "bootstrap"], function (jQuery) {
+define(["jquery", "triggeranalytics", "history"], function (jQuery, analytics) {
 
 
     function Navigator(oParams) {
@@ -9,7 +9,7 @@ define(["jquery", "history", "bootstrap"], function (jQuery) {
                 var sPage = this.path.split("/").pop();
                 this.setActive(sPage);
                 // we are clicking on navbar and want to set the history
-                jQuery("body").on("click", "#nav a:not(.dropdown-toggle)", jQuery.proxy(this.menuClick, this));
+                jQuery("body").on("click", "a:not(.dropdown-toggle, [href^=http], .carousel-control)", jQuery.proxy(this.menuClick, this));
 
                 // we get subsequent pages from the back button or from clicking above
                 History.Adapter.bind(window, 'statechange', jQuery.proxy(this.stateChange, this));
@@ -17,6 +17,7 @@ define(["jquery", "history", "bootstrap"], function (jQuery) {
                 require([sPage], function(page){
                     if(typeof page !== 'undefined') page();
                 });
+                analytics();
             },
             path: window.location.pathname,
             setActive: function (sPage) {
@@ -60,6 +61,7 @@ define(["jquery", "history", "bootstrap"], function (jQuery) {
                  require([sPage], function(page){
                      if(typeof page !== 'undefined') page();
                 });
+                analytics();
 
             }
 
